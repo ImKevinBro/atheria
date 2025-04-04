@@ -1,0 +1,461 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+
+body
+{
+    background: linear-gradient(135deg, #e8e9d6, #f1fcd8);
+    display: flex;
+    justify-content: center;
+    
+    height: 100vh;
+}
+
+.login-container{
+    background: #ecf0f1;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  
+}
+
+.login-container h2
+{
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.login-container input
+{
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-container input:focus
+{
+    border-color: #314d2e;  
+}
+
+.login-container button 
+{
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    background-color: #4c614a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
+
+.login-container button:hover
+{
+    background-color: #4f805f;
+}
+
+.login-container p
+{ 
+    margin-top: 1rem;
+    color: #666;
+}
+
+.login-container a
+{
+    color: #39685e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-container a:hover
+{
+    color: #2e5235;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.welcome-container
+{
+  
+    padding: 0px;
+    border-radius: 0px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+
+   
+}
+
+
+
+.h2
+{
+    margin-bottom: 400px;
+    color:#337e43;
+    text-align: center;
+}
+
+p
+{
+    font-size: 18px;
+    margin: 30px auto; /* Margen superior e inferior de 30px, y centrado horizontalmente */
+    padding: 10px; /* Espaciado interno opcional */
+    color: #101310;
+    text-align: center;
+    max-width: 990px;
+
+}
+img {
+    height: 40%;
+    width: 40%;
+    object-fit: contain;
+    display: block;
+    margin: 0px;
+    text-align: center;
+    
+    object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #404b39;
+    text-align: center;
+}
+
+/* Estilos para la tabla del Navbar Horizontal */
+.navbar-table {
+    width: 100%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    background-color: #2c5032;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-table td {
+    text-align: center;
+    padding: 15px;
+    border-right: 1px solid #404b39;
+}
+
+.navbar-table a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+}
+
+.navbar-table a:hover {
+    background-color: #769161;
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Eliminar el borde derecho de la última celda */
+.navbar-table td:last-child {
+    border-right: none;
+}
+
+/* Opcional: Estilo para el borde de la tabla */
+.navbar-table {
+    border: 1px solid #34495e;
+}
+
+/* Responsividad: Ajustes para móviles */
+@media (max-width: 768px) {
+    .navbar-table {
+        width: 10%;
+    }
+
+    .navbar-table a {
+        font-size: 16px;
+    }
+}
+.body button 
+{
+    width: 50%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    background-color: #6faa6a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.titulo{
+
+
+    background-color: #1f3b1c;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    color: white;
+    border-radius: 10px; /* Ajusta el valor según qué tan redondeados quieres los bordes */
+    padding: 2rem;
+    font-family: 'Abril Fatface', cursive;
+    text-align: center;
+
+}
+.content{
+
+    background-color: #ece3bf;
+    border-radius: 10px; /* Ajusta el valor según qué tan redondeados quieres los bordes */
+    padding: 1rem;
+
+}
+
+
+.lg {
+    width: max-content;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+          
+
+
+         
+          .mapa {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background-color: #ece3bf;
+        }
+        
+        .canvas {
+            width: 500%;
+            height: 500%;
+        }
+
+
+
+
+        .contenedor-productos {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tarjeta {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .tarjeta:hover {
+            transform: scale(1.05);
+        }
+        
+        .tarjeta img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .tarjeta h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .tarjeta p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .precio {
+            font-size: 16px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #054b22;
+        }
+        
+        /* Adaptación a pantallas más pequeñas */
+        @media (max-width: 1024px) {
+            .contenedor-productos {
+                grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contenedor-productos {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .contenedor-productos {
+                grid-template-columns: repeat(1, 1fr); /* 1 columna en móviles */
+            }
+        }
+
+        .footer-buttons {
+            position: fixed;  /* Fija los botones en la parte inferior */
+            bottom: 0;        /* Pegado al final */
+            left: 0;
+            width: 100%;      /* Ocupa todo el ancho */
+            background: #ffffff; /* Fondo opcional */
+            text-align: center;
+            padding: 15px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+        }
+        
+        .footer-buttons .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            background-color: #2d4736; /* Color azul Bootstrap */
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .footer-buttons .btn-outline {
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            background-color: #2d4736;
+            color: #ffffff;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metodo {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #555;
+            cursor: pointer;
+        }
+        
+        input[type="radio"] {
+            cursor: pointer;
+        }
+        
+        .info {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        
+        button {
+            padding: 12px;
+            font-size: 18px;
+            background-color: #477948;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #477948;
+        }
+        
+        .oculto {
+            display: none;
+        }
+        
+        /* Estilo para radio buttons seleccionados */
+        input[type="radio"]:checked + label {
+            font-weight: bold;
+            color: #a9e6aa;
+            color: black;
+        }
