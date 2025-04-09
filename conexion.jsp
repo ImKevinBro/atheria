@@ -1,13 +1,12 @@
 <%@ page import="java.sql.*" %>
-<%@ page import="java.security.MessageDigest" %>
-<%@ page import="javax.xml.bind.DatatypeConverter" %>
+<%@ page import="java.security.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="org.apache.commons.codec.binary.Hex" %>
+
 <%
     String dbURL = "jdbc:mysql://localhost:3306/perfiles";
     String dbUser = "root";
     String dbPass = "";
-
-    Connection conn = null;
-    PreparedStatement pstmt = null;
 
     if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("registrarse") != null) {
         String nombre = request.getParameter("nombre");
@@ -15,43 +14,55 @@
         String correo = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
 
-        if (nombre == null || nombre.isEmpty() ||
-            apellido == null || apellido.isEmpty() ||
-            correo == null || correo.isEmpty() ||
-            contrasena == null || contrasena.isEmpty()) {
-            out.println("Todos los campos son obligatorios.");
-        } else {
-            try {
-                // Conexión a la base de datos
+        // Validación básica
+        if (nombre == null || nombre.trim().isEmpty() ||
+            apellido == null || apellido.trim().isEmpty() ||
+            correo == null || !correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") ||
+            contrasena == null || contrasena.trim().isEmpty()) {
+            request.setAttribute("error", "Por favor complete todos los campos correctamente");
+            request.getRequestDispatcher("registro.jsp").forward(request, response);
+            return;
+        }
+
+        // Mejorar seguridad de contraseña
+        try {
+            SecureRandom random = new SecureRandom();
+            byte[] salt = new byte[16];
+            random.nextBytes(salt);
+            
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            md.update(salt);
+            byte[] hash = md.digest(contrasena.getBytes("UTF-8"));
+            String hashedPassword = Hex.encodeHexString(hash);
+            String saltStr = Hex.encodeHexString(salt);
+
+            // Usar try-with-resources
+            try (Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+                 PreparedStatement pstmt = conn.prepareStatement(
+                     "INSERT INTO registros (nombre, apellido, correo, contrasena, salt) VALUES (?, ?, ?, ?, ?)")) {
+                
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
-
-                // Encriptar contraseña (alternativa simple con SHA-256)
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                byte[] hash = md.digest(contrasena.getBytes("UTF-8"));
-                String hashedPassword = DatatypeConverter.printHexBinary(hash);
-
-                // Insertar datos con PreparedStatement para evitar inyección SQL
-                String sql = "INSERT INTO registros (nombre, apellido, correo, contrasena) VALUES (?, ?, ?, ?)";
-                pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, nombre);
                 pstmt.setString(2, apellido);
                 pstmt.setString(3, correo);
                 pstmt.setString(4, hashedPassword);
+                pstmt.setString(5, saltStr);
 
                 int resultado = pstmt.executeUpdate();
 
                 if (resultado > 0) {
-                    out.println("Registro exitoso.");
+                    response.sendRedirect("registro-exitoso.jsp");
                 } else {
-                    out.println("Error al registrar.");
+                    request.setAttribute("error", "Error al registrar");
+                    request.getRequestDispatcher("registro.jsp").forward(request, response);
                 }
-            } catch (Exception e) {
-                out.println("Error: " + e.getMessage());
-            } finally {
-                try { if (pstmt != null) pstmt.close(); } catch (Exception e) {}
-                try { if (conn != null) conn.close(); } catch (Exception e) {}
             }
+        } catch (SQLException e) {
+            request.setAttribute("error", "Error en la base de datos");
+            request.getRequestDispatcher("registro.jsp").forward(request, response);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            request.setAttribute("error", "Error en el sistema");
+            request.getRequestDispatcher("registro.jsp").forward(request, response);
         }
     }
 %>
